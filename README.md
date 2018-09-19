@@ -4,28 +4,28 @@
 
 ## index
 
-| method                      | auth required | description                |
-| --------------------------- | :-----------: | -------------------------- |
-| [get symbols](#get-symbols) |     false     | 获取所有可交易品种配置信息 |
-| [get tickers](#get-tickers) |     false     | 获取所有可交易品种最新行情 |
-| [get ticker](#get-ticker)   |     false     | 获取最新行情               |
-| [get depth](#get-depth)     |     false     | 获取盘口深度               |
-| [get trades](#get-trades)   |     false     | 获取最新成交记录           |
-| [get kline](#get-kline)     |     false     | 获取最新 K 线记录          |
+| method                      | auth required | description                             |
+|:----------------------------|:-------------:|:----------------------------------------|
+| [get symbols](#get-symbols) |     false     | get all tradable symbols                |
+| [get tickers](#get-tickers) |     false     | get ticker info of all tradable symbols |
+| [get ticker](#get-ticker)   |     false     | get last ticker info of the symbol      |
+| [get depth](#get-depth)     |     false     | get depth of the symbol                 |
+| [get trades](#get-trades)   |     false     | get last trade records of the symbol    |
+| [get kline](#get-kline)     |     false     | get last kline data of the symbol       |
 
 ## response description
 
-| field      | required | description |
-| ---------- | :------: | ----------- |
-| success    |   true   | 是否成功    |
-| data       |  false   | 结果数据    |
-| error_code |  false   | 错误代码    |
+| field      | required |
+|:-----------|:--------:|
+| success    |   true   |
+| data       |  false   |
+| error_code |  false   |
 
 ## error code
 
-| code   | description |
-| ------ | ----------- |
-| 150001 | 品种不存在  |
+| code   | description      |
+|:-------|:-----------------|
+| 150001 | symbol not found |
 
 # get symbols
 
@@ -33,11 +33,11 @@
 
 ## response example
 
-| field         | description |
-| ------------- | ----------- |
-| symbol        | 品种        |
-| price_digits  | 报价小数位  |
-| amount_digits | 数量小数位  |
+| field         |
+|:--------------|
+| symbol        |
+| price_digits  |
+| amount_digits |
 
 ```json
 {
@@ -63,15 +63,15 @@
 
 ## response example
 
-| field       | description |
-| ----------- | ----------- |
-| last        | 最新价      |
-| high        | 24h 最高价  |
-| low         | 24h 最低价  |
-| volume      | 24h 成交量  |
-| change_rate | 24h 涨跌幅  |
-| bid         | 买一盘口    |
-| ask         | 卖一盘口    |
+| field       | description              |
+|:------------|:-------------------------|
+| last        | last price               |
+| high        | highest price in 24h     |
+| low         | lowest price in 24h      |
+| volume      | trade volume in 24h      |
+| change_rate | price change rate in 24h |
+| bid         | bid 1 of depth           |
+| ask         | ask 1 of depth           |
 
 ```json
 {
@@ -117,21 +117,21 @@
 
 ## request description
 
-| field  | required | default | description |
-| ------ | :------: | ------- | ----------- |
-| symbol |   true   | -       | 品种        |
+| field  | required | default |
+|:-------|:--------:|:--------|
+| symbol |   true   | -       |
 
 ## response example
 
-| field       | description |
-| ----------- | ----------- |
-| last        | 最新价      |
-| high        | 24h 最高价  |
-| low         | 24h 最低价  |
-| volume      | 24h 成交量  |
-| change_rate | 24h 涨跌幅  |
-| bid         | 买一盘口    |
-| ask         | 卖一盘口    |
+| field       | description              |
+|:------------|:-------------------------|
+| last        | last price               |
+| high        | highest price in 24h     |
+| low         | lowest price in 24h      |
+| volume      | trade volume in 24h      |
+| change_rate | price change rate in 24h |
+| bid         | bid 1 of depth           |
+| ask         | ask 1 of depth           |
 
 ```json
 {
@@ -160,16 +160,16 @@
 
 ## request description
 
-| field  | required | default | description |
-| ------ | :------: | ------- | ----------- |
-| symbol |   true   | -       | 品种        |
+| field  | required | default |
+|:-------|:--------:|:--------|
+| symbol |   true   | -       |
 
 ## response example
 
-| field | description            |
-| ----- | ---------------------- |
-| bids  | 买方盘口, 按照价格倒序 |
-| asks  | 卖方盘口, 按照价格正序 |
+| field | description                          |
+|:------|:-------------------------------------|
+| bids  | depth of bid, order by price descend |
+| asks  | depth of ask, order by price ascend  |
 
 ```json
 {
@@ -205,18 +205,18 @@
 
 ## request description
 
-| field  | required | default | description |
-| ------ | :------: | ------- | ----------- |
-| symbol |   true   | -       | 品种        |
+| field  | required | default |
+|:-------|:--------:|:--------|
+| symbol |   true   | -       |
 
 ## response example
 
-| field  | description       |
-| ------ | ----------------- |
-| time   | 成交时间          |
-| price  | 成交价            |
-| volume | 成交量            |
-| side   | 方向 (买:1, 卖:2) |
+| field  | description   |
+|:-------|:--------------|
+| time   | -             |
+| price  | -             |
+| volume | -             |
+| side   | buy:1, sell:2 |
 
 ```json
 {
@@ -244,22 +244,22 @@
 
 ## request description
 
-| field  | required | default | description                                      |
-| ------ | :------: | ------- | ------------------------------------------------ |
-| symbol |   true   | -       | 品种                                             |
-| period |  false   | 5min    | 间隔周期 (1min, 5min, 15min, 30min, 1hour, 1day) |
-| limit  |  false   | 1000    | 限制条数 (1~2000)                                |
+| field  | required | default | description                           |
+|:-------|:--------:|:--------|:--------------------------------------|
+| symbol |   true   | -       | -                                     |
+| period |  false   | 5min    | 1min, 5min, 15min, 30min, 1hour, 1day |
+| limit  |  false   | 1000    | 1~2000                                |
 
 ## response example
 
-| field  | description |
-| ------ | ----------- |
-| time   | 开始时间    |
-| open   | 开盘价      |
-| high   | 最高价      |
-| low    | 最低价      |
-| close  | 收盘价      |
-| volume | 成交量      |
+| field  | description   |
+|:-------|:--------------|
+| time   | time begin    |
+| open   | open price    |
+| high   | highest price |
+| low    | lowest price  |
+| close  | last price    |
+| volume | trade volume  |
 
 ```json
 {
