@@ -1,5 +1,6 @@
 # API
 
+- [简体中文](./README_CN.md)
 - `{{MARKET_API_URL}}`: `https://api.vvvex.com/v1/market`
 
 ## index
